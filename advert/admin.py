@@ -5,11 +5,11 @@ from .models import Advertisement
 # Register your models here.
 class AdvertisementAdmin(admin.ModelAdmin):
     list_display=['id', 'title', 'description', 'price',
-                  'created_date', 'updated_date', 'auction']
+                  'created_date', 'updated_date', 'auction', 'photo_method']
     list_filter=['auction', 'created_at']
     actions=['make_auction_false', 'make_auction_true']
     fieldsets=(
-        ('Общее', {'fields':('title', 'description')}),
+        ('Общее', {'fields':('title', 'description', 'user', 'image')}),
 
         ('Финансы', {'fields':('price', 'auction'),
                      'classes': ['collapse']
@@ -22,6 +22,7 @@ class AdvertisementAdmin(admin.ModelAdmin):
     @admin.action(description='Добавить возможность торга')
     def make_auction_true(self, request, queryset):
         queryset.update(auction=True)
+
 
 
 admin.site.register(Advertisement, AdvertisementAdmin)
