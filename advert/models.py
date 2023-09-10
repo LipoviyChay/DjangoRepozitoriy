@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html
 
@@ -35,6 +36,9 @@ class Advertisement(models.Model):
         if self.image:
             return format_html(
                 '<img src="{url}" style="max-width: 60px; max-height: 150px;"', url=self.image.url)
+
+    def get_absolute_url(self):
+        return reverse('adv_detail', kwargs={'pk': self.pk})
 
 
 

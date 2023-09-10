@@ -1,8 +1,10 @@
 from django.urls import path
 
-from .views import index_, top_sellers
+from .views import index_, top_sellers, advertisement_post, advertisement_detail
 
 urlpatterns=[
     path('', index_, name='main-page'),
-    path('top-sellers/', top_sellers, name='top-sellers')
+    path('top-sellers/', top_sellers, name='top-sellers'),
+    path('advertisement-post/', advertisement_post, name='adv_post'),
+    path('advertisement/<int:pk>', advertisement_detail, name='adv_detail')
 ]
